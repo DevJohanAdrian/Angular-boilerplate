@@ -3,6 +3,18 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@app/*": ["app/*"],
+      "@assets/*": ["assets/*"],
+      "@environments/*": ["environments/*"],
+      "@shared/*": ["shared/*"],
+      "@core/*": ["core/*"],
+      "@infra/*": ["app/infra/*"],
+      "@domain/*": ["app/domain/*"],
+      "@application/*": ["app/application(adapters)/*"],
+      "@presentation/*": ["app/presentation/*"]
+    },
     "outDir": "./dist/out-tsc",
     "strict": true,
     "noImplicitOverride": true,
