@@ -9,6 +9,10 @@ export class AuthService {
 
   login(email: string, password: string) {
     return this.signInUseCase.execute(email, password);
+    //  .catch(err => {
+    //   // Aquí puedes mapear errores de Infra a algo que entienda la UI
+    //   throw new Error("Login failed. Try again.");
+    // });
   }
 
   // register(name: string, email: string, password: string) {
