@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { DashboardComponent } from '@p';
 
 export const routes: Routes = [
   //landingPageRoute,
@@ -17,6 +18,5 @@ export const routes: Routes = [
 //         (m) => m.SignUpComponent,
 //       ),
 //   },
-  {path: 'dashboard', loadComponent: () =>
-    import('./presentation/views/pages/dashboard/dashboard.component').then((m) => m.DashboardComponent)},  
+  {path: 'dashboard', component:},  
 ];
