@@ -65,7 +65,7 @@ For more information on using the Angular CLI, including detailed command refere
 SignInComponent → SignInController (Presentation)
           ↓
 AuthService (Application)
-          ↓
+          ↓ 
 SignInUseCase (Domain)
           ↓
 AuthRepository (Domain Interface)
@@ -73,4 +73,18 @@ AuthRepository (Domain Interface)
 AuthApiService (Infra)
 
 infra
+
+
+src/
+├── core/
+│   ├── guards/
+│   │   └── auth.guard.ts
+│   ├── interceptors/
+│   │   └── auth.interceptor.ts
+│   ├── services/
+│   │   └── token.service.ts
+│   ├── providers/
+│   │   └── core.providers.ts
+│   ├── constants/
+│   └── utils/
 

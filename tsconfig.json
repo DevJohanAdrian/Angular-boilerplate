@@ -9,7 +9,7 @@
       "@assets/*": ["assets/*"],
       "@environments/*": ["environments/*"],
       "@shared/*": ["shared/*"],
-      "@core/*": ["core/*"],
+      "@core/*": ["app/core/*"],
       "@infra/*": ["app/infra/*"],
       "@domain/*": ["app/domain/*"],
       "@application/*": ["app/application(adapters)/*"],

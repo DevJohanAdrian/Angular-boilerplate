@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { DashboardComponent } from '@p';
+import { DashboardComponent } from '@presentation/views/pages/dashboard/dashboard.component';
 
 export const routes: Routes = [
   //landingPageRoute,
@@ -11,12 +11,12 @@ export const routes: Routes = [
         (m) => m.SignInComponent,
       ),
   },
-//   {
-//     path: 'sign-up',
-//     loadComponent: () =>
-//       import('./presentation/views/pages/sign-up/sign-up.component').then(
-//         (m) => m.SignUpComponent,
-//       ),
-//   },
-  {path: 'dashboard', component:},  
+   {
+    path: 'sign-up',
+    loadComponent: () =>
+      import('./presentation/views/pages/sign-up/sign-up.component').then(
+        (m) => m.SignUpComponent,
+      ),
+  },
+  {path: 'dashboard', component: DashboardComponent}, 
 ];

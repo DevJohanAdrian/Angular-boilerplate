@@ -9,11 +9,11 @@ export class AuthApiService implements AuthRepository {
 
   signIn(email: string, password: string): Promise<User> {
     // Implementación HTTP
-    return this.http.post<User>('/api/login', { email, password }).toPromise();
+    return this.http.post<User>('/api/login', { email, password }).toPromise()  as Promise<User>;
   }
 
   signUp(name: string, email: string, password: string): Promise<User> {
     // Implementación HTTP
-    return this.http.post<User>('/api/register', { name, email, password }).toPromise();
+    return this.http.post<User>('/api/register', { name, email, password }).toPromise()  as Promise<User>;
   }
 }
