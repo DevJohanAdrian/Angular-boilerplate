@@ -1,22 +1,27 @@
 import { Routes } from '@angular/router';
-import { DashboardComponent } from '@presentation/views/pages/dashboard/dashboard.component';
+
+import { HomeComponent } from '@app/presentation/views/pages/home/home.component';
+import { NotFoundComponent } from '@presentation/views/pages/not-found/not-found.component';
+import { authGuard } from '@core/guards/auth.guard';
 
 export const routes: Routes = [
-  //landingPageRoute,
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  //landingPageRoute
+  { path: '', component: HomeComponent },
   {
-    path: 'sign-in',
-    loadComponent: () =>
-      import('./presentation/views/pages/sign-in/sign-in.component').then(
-        (m) => m.SignInComponent,
+    path: 'auth',
+    loadChildren: () =>
+      import('@presentation/views/pages/auth/auth.routes').then(
+        (m) => m.AUTH_ROUTES,
       ),
   },
-   {
-    path: 'sign-up',
-    loadComponent: () =>
-      import('./presentation/views/pages/sign-up/sign-up.component').then(
-        (m) => m.SignUpComponent,
+
+  {
+    path: 'dashboard',
+    canMatch: [authGuard],
+    loadChildren: () =>
+      import('@presentation/views/pages/dashboard/dashboard.routes').then(
+        (m) => m.DASHBOARD_ROUTES,
       ),
   },
-  {path: 'dashboard', component: DashboardComponent}, 
+  { path: '**', component: NotFoundComponent },
 ];

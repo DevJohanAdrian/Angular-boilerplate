@@ -7,10 +7,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { SignInData } from '../../models/sign-in.data.model';
+import { SignInData } from '../../../models/sign-in.data.model';
 
 @Component({
-  selector: 'app-sign-in',
+  selector: 'app-sign-in-page',
   imports: [ CommonModule,
     FormsModule,
     MatCardModule,
@@ -19,11 +19,11 @@ import { SignInData } from '../../models/sign-in.data.model';
     MatButtonModule,
     MatIconModule,
     MatSnackBarModule],
-  templateUrl: './sign-in.component.html',
-  styleUrl: './sign-in.component.css',
+  templateUrl: './sign-in-page.component.html',
+  styleUrl: './sign-in-page.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SignInComponent { 
+export class SignInPageComponent { 
 
 // Form data model
   signInData: SignInData = {
