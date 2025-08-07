@@ -1,97 +1,19 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { SignInData } from '../../../models/sign-in.data.model';
+import { AuthLayoutComponent } from '../auth-layout/auth-layout.component';
+import { SignInFormComponent } from './components/sign-in-fom/sign-in-form.component';
+import { SignInHeaderComponent } from './components/sign-in-header/sign-in-header.component';
+import { SignInFooterComponent } from './components/sign-in-footer/sign-in-footer.component';
 
 @Component({
-  selector: 'app-sign-in-page',
-  imports: [ CommonModule,
-    FormsModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatIconModule,
-    MatSnackBarModule],
-  templateUrl: './sign-in-page.component.html',
-  styleUrl: './sign-in-page.component.css',
+  selector: 'sign-in-page',
+  imports: [AuthLayoutComponent, SignInFormComponent, SignInHeaderComponent, SignInFooterComponent],
+  template: `
+    <auth-layout>
+      <sign-in-header slot="header"></sign-in-header>
+      <sign-in-form slot="form"></sign-in-form>
+      <sign-in-footer slot="footer"></sign-in-footer>
+    </auth-layout>
+  `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SignInPageComponent { 
-
-// Form data model
-  signInData: SignInData = {
-    email: '',
-    password: '',
-    rememberMe: false
-  };
-
-   // Component state
-  showPassword = false;
-  isLoading = false;
-  showDebugInfo = false;
-
-  constructor(private snackBar: MatSnackBar) {}
-
-  // Template Driven Form Submit Handler
-  onSubmit(form: any) {
-    console.log('Form submitted!');
-    console.log('Form valid:', form.valid);
-    console.log('Form value:', form.value);
-    console.log('Sign in data:', this.signInData);
-
-    if (form.valid) {
-      this.isLoading = true;
-      
-      // Simulate API call
-      setTimeout(() => {
-        this.isLoading = false;
-        
-        // Show success message
-        this.snackBar.open('¡Sign in successful!', 'Close', {
-          duration: 3000,
-          horizontalPosition: 'center',
-          verticalPosition: 'top',
-          panelClass: ['success-snackbar']
-        });
-        
-        // Reset form after successful submission
-        this.resetForm(form);
-        
-      }, 2000);
-    } else {
-      // Show validation errors
-      this.snackBar.open('Please fix the form errors before submitting', 'Close', {
-        duration: 3000,
-        horizontalPosition: 'center',
-        verticalPosition: 'top',
-        panelClass: ['error-snackbar']
-      });
-    }
-  }
-
-  // Reset form method
-  resetForm(form: any) {
-    form.resetForm();
-    this.signInData = {
-      email: '',
-      password: '',
-      rememberMe: false
-    };
-    this.showPassword = false;
-  }
-
-}
-
-
-
-
-
-
-
+export class SignInPageComponent {}

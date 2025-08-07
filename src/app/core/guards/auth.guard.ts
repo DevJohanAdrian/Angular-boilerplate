@@ -1,5 +1,5 @@
 import type { CanMatchFn } from '@angular/router';
 
-export const authGuardGuard: CanMatchFn = (route, segments) => {
+export const authGuard: CanMatchFn = (route, segments) => {
   return true;
 };
