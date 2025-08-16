@@ -1,0 +1,69 @@
+<div class="flex items-center justify-center min-h-screen p-4 bg-gradient-to-br from-slate-900 via-red-900 to-slate-900">
+      <div class="max-w-2xl mx-auto text-center">
+        
+        <!-- 404 Animation Container -->
+        <div class="relative mb-8">
+          <!-- Background Glow -->
+          <div class="absolute inset-0 rounded-full bg-red-500/20 blur-3xl animate-pulse"></div>
+          
+          <!-- 404 Text -->
+          <div class="relative">
+            <h1 class="text-9xl md:text-[12rem] font-black text-transparent bg-gradient-to-r from-red-400 via-pink-500 to-purple-600 bg-clip-text ">
+              404
+            </h1>
+            
+            
+          </div>
+        </div>
+
+        <!-- Error Message -->
+        <div class="mb-8 space-y-4">
+          <h2 class="mb-4 text-4xl font-bold text-white md:text-5xl">
+            Oops! Page Not Found
+          </h2>
+          <p class="mb-2 text-xl text-gray-300">
+            The page you're looking for seems to have vanished into the digital void.
+          </p>
+          <p class="text-lg text-gray-400">
+            Don't worry, even the best explorers sometimes take a wrong turn!
+          </p>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex flex-col items-center justify-center gap-4 mb-8 sm:flex-row">
+          <!-- Go Home Button -->
+            <!-- *ngIf="!auth.loggedIn()" para cuando se tenga el estado despues de iniciar sesion -->
+          <button 
+            mat-raised-button
+           (click)="router.navigateByUrl('/home')"
+            class="px-8 py-4 bg-gradient-to-r from-red-600 to-pink-600 hover:from-red-700 hover:to-pink-700 text-white font-semibold rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 active:scale-95 transition-all duration-200 text-base min-w-[200px]"
+          >
+            <mat-icon class="mr-2">home</mat-icon>
+            Go Home
+          </button>
+
+          <!-- Go Back Button -->
+                       <!-- *ngIf="!auth.loggedIn()" para cuando se tenga el estado despues de iniciar sesion -->
+
+          <button 
+            mat-stroked-button
+           (click)="router.navigateByUrl('/dashboard')"
+            class="px-8 py-4 border-2 border-white/30 text-white hover:border-white/50 hover:bg-white/10 font-semibold rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 active:scale-95 transition-all duration-200 text-base min-w-[200px]"
+          >
+            <mat-icon class="mr-2">arrow_back</mat-icon>
+            Go Back
+          </button>
+        </div>
+
+   
+
+        <!-- Fun Fact -->
+        <div class="mt-8 text-center">
+          <p class="text-sm text-gray-500">
+            <mat-icon class="mr-1 text-xs">lightbulb</mat-icon>
+            Fun fact: HTTP 404 errors were named after room 404 at CERN where the web was invented!
+          </p>
+        </div>
+
+      </div>
+    </div>

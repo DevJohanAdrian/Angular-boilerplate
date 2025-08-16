@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 
 import { HomeComponent } from '@app/presentation/views/pages/home/home.component';
-import { NotFoundComponent } from '@presentation/views/pages/not-found/not-found.component';
+import { NotFoundPageComponent } from '@app/presentation/views/pages/not-found/not-found-page.component';
 //import { authGuard } from '@core/guards/auth.guard';
 
 export const routes: Routes = [
@@ -22,5 +22,5 @@ export const routes: Routes = [
         (m) => m.DASHBOARD_ROUTES,
       ),
   },
-  { path: '**', component: NotFoundComponent },
+  { path: '**', component: NotFoundPageComponent },
 ];
