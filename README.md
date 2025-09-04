@@ -74,6 +74,14 @@ AuthApiService (Infra)
 
 infra
 
+SignInController → usa AuthService.
+
+AuthService → usa SignInUseCase.
+
+SignInUseCase → usa AuthApiService.
+
+AuthApiService → hace el HttpClient.post.
+
 
 src/
 ├── core/

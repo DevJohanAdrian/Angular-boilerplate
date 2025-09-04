@@ -5,16 +5,17 @@ import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
   standalone: true
 })
 export class IfRoleDirective {
-  // private currentRole: string = 'guest'; // mock inicial, luego vendrá del AuthService
+  private currentRole: string = 'guest'; // mock inicial, luego vendrá del AuthService
 
   constructor(
     private templateRef: TemplateRef<any>,
-    private viewContainer: ViewContainerRef
+    private viewContainer: ViewContainerRef, 
+    private authService: AuthService 
   ) {}
 
   @Input() set appIfRole(allowedRoles: string[]) {
     this.viewContainer.clear();
-     const currentRole = this.authService.getUserRole();
+     this.currentRole = this.authService.getUserRole();
 
     if (allowedRoles.includes(this.currentRole)) {
       this.viewContainer.createEmbeddedView(this.templateRef);
