@@ -1,7 +1,5 @@
-import { signIn$ } from './auth.effects';
-// import { ProductsEffects } from './products.effects';
+import * as AuthEffects from './auth.effects';
 
-export const appEffects = [
-  signIn$,
-  // ProductsEffects
-];
+export const appEffects = {
+  ...AuthEffects
+};

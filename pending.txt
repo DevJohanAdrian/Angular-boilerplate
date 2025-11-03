@@ -1,0 +1,61 @@
+Terminar pruebas unitarias x
+Crear setupTest.ts, servidor de prueva y archivo .env.test x
+Hacer pruebas de integracion
+Crear Pipeline CI
+Ver lo de dockerizacion para despligue
+VER PARA QUE SRIVE .NVMRC, .VSCODE Y HUSKY
+Posibles configuraciones de tsconfig
+Organizar README con una imagen del folder que se siguio, tecnologias y patrones
+Dockerfile y docker compose
+Ver como funciona biome
+Montar a linkedin
+
+Despues crear rama para implermentar jwt o parecidos
+
+src/
+ ├── app/
+ │   ├── core/                # Guards, interceptors, providers
+ │   ├── domain/              # Entidades, repositorios, casos de uso
+ │   ├── application/         # Orquestación de casos de uso
+ │   ├── infra/               # API calls, persistencia
+ │   ├── shared/              # Directivas, pipes, componentes comunes
+ │   ├── store/               # 👈 Aquí va NgRx (estado global UI)
+ │   │    ├── auth/
+ │   │    │    ├── actions/
+ │   │    │    │    └── auth.actions.ts
+ │   │    │    ├── reducers/
+ │   │    │    │    └── auth.reducer.ts
+ │   │    │    ├── effects/
+ │   │    │    │    └── auth.effects.ts
+ │   │    │    ├── selectors/
+ │   │    │    │    └── auth.selectors.ts
+ │   │    │    └── index.ts
+ │   │    └── app.state.ts
+ │   └── features/
+ │        └── auth/           # Componentes/páginas de autenticación
+
+
+src/
+ ├── app/
+ │   ├── core/              # Servicios transversales, providers, guards
+ │   ├── domain/            # Entidades, interfaces, repositorios, casos de uso
+ │   ├── application/       # Servicios que orquestan casos de uso
+ │   ├── infra/             # Implementaciones concretas (APIs, storage, etc.)
+ │   ├── shared/            # 👈 Pipes, directivas, componentes reutilizables
+ │   │    ├── directives/
+ │   │    │     └── if-role.directive.ts   # ejemplo
+ │   │    ├── pipes/
+ │   │    └── components/
+ │   └── features/          # Módulos o páginas específicas (auth, dashboard, etc.)
+
+ SignInUseCase
+   ↓
+AuthService (application)
+   ↓
+AuthApiService (infra/http)
+   ↓
+ApiService (core/http)
+   ↓
+HttpClient + Interceptors (core/interceptors)
+
+Use Case (application) → Service (infra/http) → HttpClient (core/http + interceptors)

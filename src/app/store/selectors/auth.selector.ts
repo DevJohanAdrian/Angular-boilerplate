@@ -1,5 +1,5 @@
 import { createSelector, createFeatureSelector } from "@ngrx/store";
-import { AuthState } from "../../reducers/auth.reducers";
+import { AuthState } from "../reducers/auth.reducer";
 
 export const selectAuthState = createFeatureSelector<AuthState>('auth');
 export const selectUser = createSelector(
