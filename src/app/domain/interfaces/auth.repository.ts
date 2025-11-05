@@ -1,13 +1,10 @@
-import { User } from "../entities/user.entity";
+import { AuthResult } from "../value-objects/auth-result";
 import { Observable } from 'rxjs';
 
-
-// export interface AuthRepository {
-//   signIn(email: string, password: string): Promise<User>;
-//   signUp(name: string, email: string, password: string): Promise<User>;
-  
-// }
-
+/**
+ * Contrato abstracto para el repositorio de autenticación
+ * Define las operaciones de autenticación sin depender de detalles de implementación
+ */
 export abstract class AuthRepository {
-  abstract signIn(email: string, password: string): Observable<User>;
+  abstract signIn(email: string, password: string): Observable<AuthResult>;
 }

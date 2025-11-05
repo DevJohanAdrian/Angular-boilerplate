@@ -15,7 +15,7 @@ export class SignInController {
   //     });
   // }
 
-   signIn(email: string, password: string) {
+  signIn(email: string, password: string) {
     return this.authService.signIn(email, password);
   }
 }

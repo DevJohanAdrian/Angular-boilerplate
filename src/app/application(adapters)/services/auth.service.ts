@@ -1,15 +1,20 @@
 import { SignInUseCase } from "@domain/usecases/sign-in.usecase";
-// import { SignUpUseCase } from "../../domain/usecases/sign-up.usecase";
 import { Observable } from "rxjs";
-import { User } from '@domain/entities/user.entity';
-import { Injectable } from '@angular/core';
+import { AuthResult } from '@domain/value-objects/auth-result';
+import { Injectable, Inject } from '@angular/core';
+import { TokenStorageRepository } from '@domain/interfaces/token-storage.repository';
+import { TOKEN_STORAGE_REPOSITORY } from '@core/tokens/token-storage.token';
+import { tap } from 'rxjs/operators';
 
-
+/**
+ * Servicio de aplicación que orquesta los casos de uso de autenticación
+ * Ahora respeta la inversión de dependencias al depender de abstracciones
+ */
 @Injectable()
 export class AuthService {
   constructor(
     private readonly signInUseCase: SignInUseCase,
-    // private signUpUseCase: SignUpUseCase
+    @Inject(TOKEN_STORAGE_REPOSITORY) private readonly tokenStorage: TokenStorageRepository
   ) {}
 
   // login(email: string, password: string) {
@@ -20,8 +25,30 @@ export class AuthService {
   //   // });
   // }
 
-   signIn(email: string, password: string): Observable<User> {
-    return this.signInUseCase.execute(email, password);
+  signIn(email: string, password: string): Observable<AuthResult> {
+    return this.signInUseCase.execute(email, password).pipe(
+      tap(authResult => {
+        // Guardar el token automáticamente después de una autenticación exitosa
+        this.saveToken(authResult.token);
+      })
+    );
+  }
+
+  // Métodos que delegan al repositorio de almacenamiento
+  saveToken(token: string): void {
+    this.tokenStorage.saveToken(token);
+  }
+
+  getToken(): string | null {
+    return this.tokenStorage.getToken();
+  }
+
+  clearToken(): void {
+    this.tokenStorage.clearToken();
+  }
+
+  isAuthenticated(): boolean {
+    return this.tokenStorage.hasValidToken();
   }
 
   // register(name: string, email: string, password: string) {

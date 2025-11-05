@@ -25,4 +25,4 @@ export class ApiService {
   }
 }
 
-// este es un generico
+// este es un servicio generico

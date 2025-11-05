@@ -4,7 +4,7 @@ import {
   isDevMode,
 } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 
 import { routes } from './app.routes';
 import { authProviders } from './core/providers/auth.providers';
@@ -14,8 +14,8 @@ import { appStoreProviders } from './store/app.store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 
 // Interceptores
-import { authInterceptor } from '@app/core/interceptors/auth.interceptor';
-import { errorInterceptor } from '@core/interceptors/error.interceptor';
+import { authInterceptor } from '@app/core/http/interceptors/auth.interceptor';
+import { errorInterceptor } from '@app/core/http/interceptors/error.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [

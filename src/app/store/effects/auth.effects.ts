@@ -10,7 +10,10 @@ export const signIn$ = createEffect(
       ofType(AuthActions.signIn),
       mergeMap(({ email, password }) =>
         authService.signIn(email, password).pipe(
-          map(({ user, token }) => AuthActions.signInSuccess({ user, token })),
+          map((authResult) => AuthActions.signInSuccess({ 
+            user: authResult.user, 
+            token: authResult.token 
+          })),
           catchError((error) => of(AuthActions.signInFailure({ error })))
         )
       )
