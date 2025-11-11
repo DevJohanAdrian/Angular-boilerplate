@@ -14,7 +14,9 @@ import { environment } from '@environments/environment';
  */
 @Injectable()
 export class AuthApiService implements AuthRepository {
-  private readonly baseUrl = `${environment.apiUrl}/auth`;
+  // private readonly baseUrl = `${environment.apiUrl}/auth`;
+    private readonly baseUrl = `${environment.apiDummyJson}/auth`;
+
   private readonly REQUEST_TIMEOUT = 10000; // 10 segundos
   private readonly MAX_RETRIES = 2;
 
@@ -23,7 +25,7 @@ export class AuthApiService implements AuthRepository {
   signIn(email: string, password: string): Observable<AuthResult> {
     const payload = { email, password };
     
-    return this.http.post<ApiUserResponse>(`${this.baseUrl}/sign-in`, payload).pipe(
+    return this.http.post<DummyLoginResponse>(`${this.baseUrl}/login`, payload).pipe(
       timeout(this.REQUEST_TIMEOUT),
       retry(this.MAX_RETRIES),
       map(response => this.mapApiResponseToAuthResult(response)),
@@ -35,21 +37,21 @@ export class AuthApiService implements AuthRepository {
    * Mapea la respuesta de la API al AuthResult de dominio
    * Esto aísla el dominio de los detalles de la API externa
    */
-  private mapApiResponseToAuthResult(apiResponse: ApiUserResponse): AuthResult {
+  private mapApiResponseToAuthResult(apiResponse: DummyLoginResponse): AuthResult {
     // Crear la entidad User usando el factory method
-    const user = User.fromApiResponse(apiResponse.user);
+    const user = User.fromApiResponse(apiResponse);
     
-    // Calcular timestamp de expiración si viene expires_in
-    const expiresIn = apiResponse.expires_in 
-      ? Date.now() + (apiResponse.expires_in * 1000)
-      : undefined;
+    // // Calcular timestamp de expiración si viene expires_in
+    // const expiresIn = apiResponse.expires_in 
+    //   ? Date.now() + (apiResponse.expires_in * 1000)
+    //   : undefined;
     
     // Crear y retornar AuthResult
     return AuthResult.create(
       user,
       apiResponse.token,
-      expiresIn,
-      apiResponse.refresh_token
+      // expiresIn,
+      // apiResponse.refresh_token
     );
   }
 
@@ -119,4 +121,16 @@ interface ApiUserResponse {
   token: string;
   expires_in?: number;
   refresh_token?: string;
+}
+
+// dummyApi
+interface DummyLoginResponse {
+  id: number;
+  username: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  gender: string;
+  image: string;
+  token: string;
 }

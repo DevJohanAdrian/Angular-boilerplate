@@ -38,3 +38,4 @@ export class AuthResult {
     return new AuthResult(user, token, expiresIn, refreshToken);
   }
 }
+

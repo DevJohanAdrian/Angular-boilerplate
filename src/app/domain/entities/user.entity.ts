@@ -56,6 +56,19 @@ export class User {
     );
   }
 
+    // Factory method para crear desde datos externos
+  static dummyFromApiResponse(data: any): User {
+    return new User(
+      data.id,
+      `${data.firstname} ${data.lastname}`,
+      data.email,
+      data.roles || [],
+      data.isActive ?? true,
+      data.createdAt ? new Date(data.createdAt) : new Date()
+    );
+  }
+
+
   // Método para serializar (útil para persistencia)
   toPlainObject(): any {
     return {
