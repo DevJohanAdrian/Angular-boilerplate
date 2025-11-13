@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { SignUpData } from '@presentation/views/models/sign-up.data.model';
+import { SignUpData } from '@presentation/views/models/auth/sign-up.data.model';
 
 import { CommonModule } from '@angular/common';
 import {

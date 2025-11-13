@@ -1,11 +1,11 @@
 import { Routes } from '@angular/router';
-import { DashboardPageComponent } from './layout/dashboard-page.component';
 import { NotFoundPageComponent } from '@app/presentation/views/pages/not-found/not-found-page.component';
+import { DashboardModulesPageComponent } from './DashboardModulesPage/DashboardModulesPage.component';
 
 export const DASHBOARD_ROUTES: Routes = [
   {
     path: '',
-    component: DashboardPageComponent,
-    
+    component: DashboardModulesPageComponent,
   },
+  { path: '**', component: NotFoundPageComponent },
 ];

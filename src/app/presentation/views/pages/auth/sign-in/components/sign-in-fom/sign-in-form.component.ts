@@ -7,8 +7,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { SignInData } from '@presentation/views/models/sign-in.data.model';
+import { SignInData } from '@presentation/views/models/auth/sign-in.data.model';
 import { SignInController } from '@presentation/controllers/sign-in.controller';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'sign-in-form',
@@ -26,6 +27,10 @@ import { SignInController } from '@presentation/controllers/sign-in.controller';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [SignInController],
 })
+
+
+
+
 export class SignInFormComponent {
   // Form data model
   signInData: SignInData = {
@@ -42,7 +47,26 @@ export class SignInFormComponent {
   constructor(
     private snackBar: MatSnackBar,
     private readonly signInController: SignInController,
+    private readonly router: Router,
   ) {}
+
+
+   validateEmailOrUsername(control: any): void {
+    if (!control.value) {
+      control.setErrors(null);
+      return;
+    }
+
+    const value = control.value.trim();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const usernameRegex = /^[a-zA-Z0-9_-]{3,}$/;
+
+    if (!emailRegex.test(value) && !usernameRegex.test(value)) {
+      control.setErrors({ 'emailOrUsername': true });
+    } else {
+      control.setErrors(null);
+    }
+  }
 
   // Template Driven Form Submit Handler
   onSubmit(form: any) {
@@ -93,7 +117,7 @@ export class SignInFormComponent {
         console.log('Usuario autenticado:', user);
         this.isLoading = false;
         // 👇 Aquí podrías navegar al dashboard
-
+        this.router.navigate(['/dashboard']);
         // Reset form after successful submission
         this.resetForm(form);
       },

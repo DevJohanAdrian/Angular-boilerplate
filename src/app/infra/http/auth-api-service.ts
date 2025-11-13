@@ -23,7 +23,7 @@ export class AuthApiService implements AuthRepository {
   constructor(private http: HttpClient) {}
 
   signIn(email: string, password: string): Observable<AuthResult> {
-    const payload = { email, password };
+    const payload = { username:email, password }; //username is used for dummyapi
     
     return this.http.post<DummyLoginResponse>(`${this.baseUrl}/login`, payload).pipe(
       timeout(this.REQUEST_TIMEOUT),
@@ -39,7 +39,7 @@ export class AuthApiService implements AuthRepository {
    */
   private mapApiResponseToAuthResult(apiResponse: DummyLoginResponse): AuthResult {
     // Crear la entidad User usando el factory method
-    const user = User.fromApiResponse(apiResponse);
+    const user = User.dummyFromApiResponse(apiResponse);
     
     // // Calcular timestamp de expiración si viene expires_in
     // const expiresIn = apiResponse.expires_in 
@@ -49,9 +49,9 @@ export class AuthApiService implements AuthRepository {
     // Crear y retornar AuthResult
     return AuthResult.create(
       user,
-      apiResponse.token,
+      apiResponse.accessToken,
       // expiresIn,
-      // apiResponse.refresh_token
+      apiResponse.refreshToken
     );
   }
 
@@ -132,5 +132,6 @@ interface DummyLoginResponse {
   lastName: string;
   gender: string;
   image: string;
-  token: string;
+  refreshToken: string,
+  accessToken:string
 }

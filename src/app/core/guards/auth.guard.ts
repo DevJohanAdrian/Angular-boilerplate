@@ -2,7 +2,6 @@ import { inject } from '@angular/core';
 import { CanMatchFn, Router, UrlSegment, Route } from '@angular/router';
 import { AuthService } from '@application/services/auth.service';
 import { map } from 'rxjs/operators';
-import { of } from 'rxjs';
 
 /**
  * AuthGuard: Protege rutas que requieren autenticación.

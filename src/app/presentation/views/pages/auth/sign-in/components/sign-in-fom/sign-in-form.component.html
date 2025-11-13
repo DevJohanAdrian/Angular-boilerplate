@@ -6,7 +6,56 @@
     class="space-y-6"
     novalidate
   >
-    <!-- Email Input -->
+
+
+
+ <!-- Email or Username Input -->
+              <div class="space-y-2">
+                <label class="block mb-2 text-sm font-semibold text-gray-700">Email or Username</label>
+                <div class="relative group">
+                  <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
+                    <mat-icon class="text-gray-400 transition-colors duration-200 group-focus-within:text-purple-500"
+                              [class.text-red-500]="email.invalid && (email.dirty || email.touched)"
+                              [class.text-green-500]="email.valid && (email.dirty || email.touched)">
+                      person
+                    </mat-icon>
+                  </div>
+                  <input
+                    type="text"
+                    name="email"
+                    #email="ngModel"
+                    [(ngModel)]="signInData.email"
+                    required
+                    (blur)="validateEmailOrUsername(email)"
+                    placeholder="Enter email or username (min 3 characters)"
+                    class="w-full py-4 pl-12 pr-4 text-base text-gray-800 placeholder-gray-400 transition-all duration-200 border-2 border-gray-200 bg-gray-50 rounded-2xl focus:outline-none focus:border-purple-500 focus:bg-white focus:ring-4 focus:ring-purple-500/10"
+                    [class.border-red-500]="email.invalid && (email.dirty || email.touched)"
+                    [class.border-green-500]="email.valid && (email.dirty || email.touched)"
+                    [class.bg-red-50]="email.invalid && (email.dirty || email.touched)"
+                    [class.bg-green-50]="email.valid && (email.dirty || email.touched)"
+                  >
+                </div>
+                <!-- Email or Username Validation Messages -->
+                <div *ngIf="email.invalid && (email.dirty || email.touched)" class="mt-1 ml-1 text-sm text-red-500">
+                  <div *ngIf="email.errors?.['required']" class="flex items-center space-x-1">
+                    <mat-icon class="text-xs">error</mat-icon>
+                    <span>Email or username is required</span>
+                  </div>
+                  <div *ngIf="email.errors?.['emailOrUsername']" class="flex items-center space-x-1">
+                    <mat-icon class="text-xs">error</mat-icon>
+                    <span>Please enter a valid email or username (letters, numbers, - or _)</span>
+                  </div>
+                </div>
+                <div *ngIf="email.valid && (email.dirty || email.touched)" class="mt-1 ml-1 text-sm text-green-500">
+                  <div class="flex items-center space-x-1">
+                    <mat-icon class="text-xs">check_circle</mat-icon>
+                    <span>Looks good!</span>
+                  </div>
+                </div>
+              </div>
+
+
+    <!-- Email Input
     <div class="space-y-2">
       <label class="block mb-2 text-sm font-semibold text-gray-700"
         >Email Address</label
@@ -46,7 +95,7 @@
           [class.bg-green-50]="email.valid && (email.dirty || email.touched)"
         />
       </div>
-      <!-- Email Validation Messages -->
+      Email Validation Messages 
       <div
         *ngIf="email.invalid && (email.dirty || email.touched)"
         class="mt-1 ml-1 text-sm text-red-500"
@@ -75,7 +124,7 @@
           <span>Email looks good!</span>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <!-- Password Input -->
     <div class="space-y-2">

@@ -7,7 +7,7 @@ export class User {
     public readonly id: string,
     public readonly name: string,
     public readonly email: string,
-    public readonly roles: string[] = [],
+    public readonly roles: string[] = [], 
     public readonly isActive: boolean = true,
     public readonly createdAt: Date = new Date()
   ) {
@@ -60,9 +60,9 @@ export class User {
   static dummyFromApiResponse(data: any): User {
     return new User(
       data.id,
-      `${data.firstname} ${data.lastname}`,
+      `${data.firstName} ${data.lastName}`,
       data.email,
-      data.roles || [],
+      data.roles || ['user'],
       data.isActive ?? true,
       data.createdAt ? new Date(data.createdAt) : new Date()
     );

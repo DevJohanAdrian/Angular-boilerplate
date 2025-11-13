@@ -3,7 +3,7 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from '@presentation/views/pages/home/home.component';
 import { NotFoundPageComponent } from '@presentation/views/pages/not-found/not-found-page.component';
 import { DashboardPageComponent } from '@presentation/views/pages/dashboard/layout/dashboard-page.component';
-//import { authGuard } from '@core/guards/auth.guard';
+import { authGuard } from '@core/guards/auth.guard';
 
 export const routes: Routes = [
   //landingPageRoute
@@ -17,7 +17,7 @@ export const routes: Routes = [
   },
   {
     path: 'dashboard',
-    // canMatch: [authGuard],
+    canMatch: [authGuard],
     component:DashboardPageComponent,
     loadChildren: () =>
       import('@presentation/views/pages/dashboard/dashboard.routes').then(
