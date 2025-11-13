@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 
 @Component({
-  selector: 'app-dashboard-modules-page',
+  selector: 'dashboard-modules-page',
   imports: [MatIconModule, MatButtonModule, MatMenuModule],
   template: ` <div class="max-w-7xl mx-auto">
     <!-- Welcome Section -->

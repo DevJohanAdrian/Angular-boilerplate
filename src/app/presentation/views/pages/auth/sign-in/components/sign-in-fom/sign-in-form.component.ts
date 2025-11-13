@@ -8,7 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { SignInData } from '@presentation/views/models/auth/sign-in.data.model';
-import { SignInController } from '@presentation/controllers/sign-in.controller';
+import { AuthController } from '@app/presentation/controllers/auth.controller';
 import { Router } from '@angular/router';
 
 @Component({
@@ -25,7 +25,7 @@ import { Router } from '@angular/router';
   ],
   templateUrl: './sign-in-form.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [SignInController],
+  providers: [AuthController],
 })
 
 
@@ -46,7 +46,7 @@ export class SignInFormComponent {
 
   constructor(
     private snackBar: MatSnackBar,
-    private readonly signInController: SignInController,
+    private readonly authController: AuthController,
     private readonly router: Router,
   ) {}
 
@@ -112,12 +112,12 @@ export class SignInFormComponent {
     const { email, password, rememberMe } = form.value;
 
 
-    this.signInController.signIn(email, password).subscribe({
+    this.authController.signIn(email, password).subscribe({
       next: (user) => {
         console.log('Usuario autenticado:', user);
         this.isLoading = false;
         // 👇 Aquí podrías navegar al dashboard
-        this.router.navigate(['/dashboard']);
+        this.router.navigateByUrl('/dashboard');
         // Reset form after successful submission
         this.resetForm(form);
       },

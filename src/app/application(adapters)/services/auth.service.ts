@@ -41,6 +41,7 @@ export class AuthService {
       tap((authResult) => {
         // Guardar el token automáticamente después de una autenticación exitosa
         this.saveToken(authResult.token);
+        this._isAuthenticated$.next(true); // ✅ notifica al guard inmediatamente
       }),
     );
   }

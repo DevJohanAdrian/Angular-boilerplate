@@ -18,7 +18,7 @@ export const authGuard: CanMatchFn = (route: Route, segments: UrlSegment[]) => {
       }
 
       // Si no está autenticado, redirige al login
-      router.navigate(['/auth/login'], {
+      router.navigate(['/auth/sign-in'], {
         queryParams: { redirectTo: '/' + segments.map(s => s.path).join('/') },
       });
       return false;

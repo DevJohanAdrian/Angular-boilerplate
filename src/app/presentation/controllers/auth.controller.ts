@@ -1,8 +1,8 @@
-import { Injectable } from "@angular/core";
-import { AuthService } from "@application/services/auth.service";
+import { Injectable } from '@angular/core';
+import { AuthService } from '@application/services/auth.service';
 
 @Injectable()
-export class SignInController {
+export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   // login(email: string, password: string) {
@@ -17,5 +17,9 @@ export class SignInController {
 
   signIn(email: string, password: string) {
     return this.authService.signIn(email, password);
+  }
+  
+  logOut() {
+    return this.authService.logout();
   }
 }

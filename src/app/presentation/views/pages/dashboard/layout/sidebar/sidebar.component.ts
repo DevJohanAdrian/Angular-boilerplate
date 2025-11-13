@@ -4,6 +4,7 @@ import { RouterModule, Router } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { NavSection } from '@presentation/views/models/dashboard/dashboard.data.model';
+import { AuthController } from '@presentation/controllers/auth.controller';
 
 
 
@@ -43,16 +44,17 @@ import { NavSection } from '@presentation/views/models/dashboard/dashboard.data.
 
       <!-- Footer -->
       <div class="px-4 py-6 border-t border-gray-800">
-        <button
+        <button type="button"
           class="w-full px-4 py-3 rounded-lg flex items-center space-x-3 text-gray-300 hover:bg-gray-800 hover:text-white transition-all duration-200 group"
-        >
+        (click)="onLogout()"
+          >
           <mat-icon class="text-lg">logout</mat-icon>
           <span>Logout</span>
         </button>
       </div>
     </aside>
   `,
-  styles: []
+  providers: [AuthController],
 })
 export class SidebarComponent implements OnInit {
   navSections: NavSection[] = [
@@ -82,7 +84,14 @@ export class SidebarComponent implements OnInit {
     }
   ];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private readonly authController: AuthController) {}
 
   ngOnInit(): void {}
+
+  
+   onLogout() {
+    this.authController.logOut()
+    this.router.navigateByUrl('/auth/sign-in');
+  }
+  
 }
