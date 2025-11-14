@@ -5,17 +5,16 @@ import {
 } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
-
 import { routes } from './app.routes';
 import { authProviders } from './core/providers/auth.providers';
-// import { provideStore } from '@ngrx/store';
-// import { provideEffects } from '@ngrx/effects';
-import { appStoreProviders } from './store/app.store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 
 // Interceptores
 import { authInterceptor } from '@app/core/http/interceptors/auth.interceptor';
 import { errorInterceptor } from '@app/core/http/interceptors/error.interceptor';
+
+// Store
+import { appStoreProviders } from '@app/application(adapters)/store/app.store';
 
 export const appConfig: ApplicationConfig = {
   providers: [

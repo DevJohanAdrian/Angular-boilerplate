@@ -11,17 +11,21 @@ export const authGuard: CanMatchFn = (route: Route, segments: UrlSegment[]) => {
   const authService = inject(AuthService);
   const router = inject(Router);
 
-  return authService.isAuthenticated$.pipe(
-    map((isAuthenticated) => {
-      if (isAuthenticated) {
-        return true;
-      }
+  return authService.isAuthenticated() ? true : router.navigate(['/auth/sign-in'], {
+    queryParams: { redirectTo: '/' + segments.map(s => s.path).join('/') },
+  });
 
-      // Si no está autenticado, redirige al login
-      router.navigate(['/auth/sign-in'], {
-        queryParams: { redirectTo: '/' + segments.map(s => s.path).join('/') },
-      });
-      return false;
-    })
-  );
+  // return authService.isAuthenticated$.pipe(
+  //   map((isAuthenticated) => {
+  //     if (isAuthenticated) {
+  //       return true;
+  //     }
+
+  //     // Si no está autenticado, redirige al login
+  //     router.navigate(['/auth/sign-in'], {
+  //       queryParams: { redirectTo: '/' + segments.map(s => s.path).join('/') },
+  //     });
+  //     return false;
+  //   })
+  // );
 };

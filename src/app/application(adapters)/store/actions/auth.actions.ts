@@ -2,25 +2,28 @@ import { createAction, props } from '@ngrx/store';
 import { User } from '@domain/entities/user.entity';
 
 export const signIn = createAction(
-  '[Auth] Login',
+  '[Auth] Sign In',
   props<{ email: string; password: string }>(),
 );
 
 export const signInSuccess = createAction(
-  '[Auth] Login Success',
+  '[Auth] Sign In Success',
   props<{ user: User; token: string }>(),
 );
 
 export const signInFailure = createAction(
-  '[Auth] Login Failure',
+  '[Auth] Sign In Failure',
   props<{ error: any }>(),
 );
 
-export const signOut = createAction('[Auth] Logout');
+export const signOut = createAction('[Auth] Sign Out');
 
-export const signOutSuccess = createAction('[Auth] Logout Success');
+export const signOutSuccess = createAction('[Auth] Sign Out Success');
 
 export const signOutFailure = createAction(
-  '[Auth] Logout Failure',
+  '[Auth] Sign Out Failure',
   props<{ error: any }>(),
 );
+
+
+

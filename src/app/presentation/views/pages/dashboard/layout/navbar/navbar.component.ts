@@ -5,7 +5,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDividerModule } from '@angular/material/divider';
 import { AuthController } from '@presentation/controllers/auth.controller';
-import { Router } from '@angular/router';
 
 
 @Component({
@@ -82,12 +81,12 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent {
 
-  constructor(private readonly authController: AuthController, private router: Router
+  constructor(private readonly authController: AuthController
   ) {}
 
   onLogout() {
-    this.authController.logOut()
-    this.router.navigateByUrl('/auth/sign-in');
+    this.authController.onSignOut()
+    // this.router.navigateByUrl('/auth/sign-in'); // se hace en el effect
   }
   
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Router } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { NavSection } from '@presentation/views/models/dashboard/dashboard.data.model';
@@ -84,14 +84,14 @@ export class SidebarComponent implements OnInit {
     }
   ];
 
-  constructor(private router: Router, private readonly authController: AuthController) {}
+  constructor( private readonly authController: AuthController) {}
 
   ngOnInit(): void {}
 
   
    onLogout() {
-    this.authController.logOut()
-    this.router.navigateByUrl('/auth/sign-in');
+    this.authController.onSignOut()
+    // this.router.navigateByUrl('/auth/sign-in'); // se hace en el effect
   }
   
 }

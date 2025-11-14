@@ -4,6 +4,8 @@ import { User } from '@domain/entities/user.entity';
 
 export interface AuthState {
   user: User | null;
+  isAuthenticated: boolean;
+
   token: string | null;
   loading: boolean;
   error: any;
@@ -12,6 +14,8 @@ export interface AuthState {
 export const initialAuthState: AuthState = {
   user: null,
   token: null,
+  isAuthenticated: false,
+
   loading: false,
   error: null,
 };
@@ -22,6 +26,8 @@ export const authReducer = createReducer(
   on(AuthActions.signInSuccess, (state, { user, token }) => ({
     ...state,
     user,
+    isAuthenticated: true,
+
     token,
     loading: false,
     error: null,

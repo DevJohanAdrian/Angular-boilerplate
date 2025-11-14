@@ -110,33 +110,34 @@ export class SignInFormComponent {
 
     this.isLoading = true;
     const { email, password, rememberMe } = form.value;
+    this.authController.onSignIn(email, password)
 
+  // ya no necesario se pasa a responsabilidad de ngrx effects
+    // this.authController.signIn(email, password).subscribe({
+    //   next: (user) => {
+    //     console.log('Usuario autenticado:', user);
+    //     this.isLoading = false;
+    //     // 👇 Aquí podrías navegar al dashboard
+    //     this.router.navigateByUrl('/dashboard');
+    //     // Reset form after successful submission
+    //     this.resetForm(form);
+    //   },
+    //   error: (err) => {
+    //     this.isLoading = false;
 
-    this.authController.signIn(email, password).subscribe({
-      next: (user) => {
-        console.log('Usuario autenticado:', user);
-        this.isLoading = false;
-        // 👇 Aquí podrías navegar al dashboard
-        this.router.navigateByUrl('/dashboard');
-        // Reset form after successful submission
-        this.resetForm(form);
-      },
-      error: (err) => {
-        this.isLoading = false;
-
-        this.snackBar.open(
-          err.message || 'Error signing in. Please try again.',
-          'Close',
-          {
-            duration: 3000,
-            horizontalPosition: 'center',
-            verticalPosition: 'top',
-            panelClass: ['error-snackbar'],
-          },
-        );
-        console.error(err);
-      },
-    });
+    //     this.snackBar.open(
+    //       err.message || 'Error signing in. Please try again.',
+    //       'Close',
+    //       {
+    //         duration: 3000,
+    //         horizontalPosition: 'center',
+    //         verticalPosition: 'top',
+    //         panelClass: ['error-snackbar'],
+    //       },
+    //     );
+    //     console.error(err);
+    //   },
+    // });
   }
 
   // Reset form method
