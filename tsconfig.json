@@ -13,7 +13,8 @@
       "@infra/*": ["app/infra/*"],
       "@domain/*": ["app/domain/*"],
       "@application/*": ["app/application(adapters)/*"],
-      "@presentation/*": ["app/presentation/*"]
+      "@presentation/*": ["app/presentation/*"],
+      "@tests/*": ["app/__tests__/*"]
     },
     "outDir": "./dist/out-tsc",
     "strict": true,
@@ -28,7 +29,8 @@
     "moduleResolution": "bundler",
     "importHelpers": true,
     "target": "ES2022",
-    "module": "ES2022"
+     "module": "ES2022"
+   
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
