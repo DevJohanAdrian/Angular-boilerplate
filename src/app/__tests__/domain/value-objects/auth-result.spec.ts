@@ -1,6 +1,5 @@
 import { AuthResult } from '@domain/value-objects/auth-result';
 import { User } from '@domain/entities/user.entity';
-// import { describe, it, expect, beforeEach } from 'vitest';
 
 describe('AuthResult Value Object', () => {
   // it('should work', () => { expect(true).toBe(true); });
